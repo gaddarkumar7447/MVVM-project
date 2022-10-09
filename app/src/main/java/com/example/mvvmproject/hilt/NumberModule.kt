@@ -1,5 +1,6 @@
 package com.example.mvvmproject.hilt
 
+import com.example.mvvmproject.local.NumberRepo
 import com.example.mvvmproject.remote.retrofit.BASE_URL
 import com.example.mvvmproject.remote.retrofit.NumberApi
 import dagger.Module
@@ -17,5 +18,11 @@ object NumberModule {
     @Singleton
     fun provideRetrofitInterfaces() : NumberApi{
         return Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build().create(NumberApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provides(numberApi: NumberApi) : NumberRepo{
+        return NumberRepo(numberApi)
     }
 }
