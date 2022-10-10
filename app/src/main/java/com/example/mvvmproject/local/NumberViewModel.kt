@@ -22,5 +22,4 @@ class NumberViewModel @Inject constructor(private val repo: NumberRepo) : ViewMo
         _fact.postValue(Events(Result(Status.LOADING, null, null)))
         _fact.postValue(Events(repo.getNumberFact(num)))
     }
-
 }

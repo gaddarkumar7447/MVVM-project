@@ -9,7 +9,7 @@ import com.example.mvvmproject.util.Status
 class NumberRepo(private val numberApi: NumberApi) {
     suspend fun getNumberFact(number: Int): Result<NumberResponce> {
         return try {
-            val responce = numberApi.getNumberFact(number)
+            val responce = numberApi.getNumberFact("application/json", number)
             return Result(Status.SUCCESS, responce.body(), null)
         } catch (e: Exception) {
             Result(Status.ERROR, null, null)
